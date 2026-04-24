@@ -5,6 +5,8 @@ import com.tideclient.Module.Module;
 import com.tideclient.Module.impl.CLIENT.HudComp.HudComponents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 
+import static com.tideclient.Module.impl.CLIENT.HudComp.HudComponents.getActiveModule;
+
 public class Hud extends Module {
     private static boolean shouldRender = false;
 
@@ -14,6 +16,7 @@ public class Hud extends Module {
         HudRenderCallback.EVENT.register((drawContext, tickDelta) -> {
             if (shouldRender) {
                 HudComponents.HudInit(true, drawContext);
+                getActiveModule(drawContext);
             }
         });
     }
