@@ -5,6 +5,7 @@ import com.tideclient.Module.impl.COMBAT.AutoTotem;
 import com.tideclient.Module.impl.CLIENT.Hud;
 import com.tideclient.Module.impl.MOVEMENT.Sprint;
 import com.tideclient.Module.impl.RENDER.Fullbright;
+import com.tideclient.Module.impl.RENDER.Trail;
 
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class ModuleManager {
         modules.add(new Hud());
         modules.add(new Fullbright());
         modules.add(new AutoTotem());
+        modules.add(new Trail());
 
         CONFIG.load(modules);
     }
