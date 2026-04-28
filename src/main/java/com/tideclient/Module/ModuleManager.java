@@ -3,8 +3,10 @@ package com.tideclient.Module;
 import com.tideclient.Module.Config.CONFIG;
 import com.tideclient.Module.impl.COMBAT.AutoTotem;
 import com.tideclient.Module.impl.CLIENT.Hud;
+import com.tideclient.Module.impl.MOVEMENT.NoFall;
 import com.tideclient.Module.impl.MOVEMENT.Sprint;
 import com.tideclient.Module.impl.RENDER.Fullbright;
+import com.tideclient.Module.impl.RENDER.KillEffect;
 import com.tideclient.Module.impl.RENDER.Trail;
 
 
@@ -21,6 +23,8 @@ public class ModuleManager {
         modules.add(new Fullbright());
         modules.add(new AutoTotem());
         modules.add(new Trail());
+        modules.add(new KillEffect());
+        modules.add(new NoFall());
 
         CONFIG.load(modules);
     }
