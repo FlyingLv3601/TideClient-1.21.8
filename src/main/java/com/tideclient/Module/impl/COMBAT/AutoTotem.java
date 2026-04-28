@@ -1,4 +1,4 @@
-package com.tideclient.Module.impl.CLIENT.COMBAT;
+package com.tideclient.Module.impl.COMBAT;
 
 import com.tideclient.Module.Categories;
 import com.tideclient.Module.Module;
@@ -25,8 +25,6 @@ public class AutoTotem extends Module {
 
         if (++tick < delay) return;
         tick = 0;
-
-        // если уже есть тотем в оффхенде — ничего не делаем
         if (mc.player.getOffHandStack().getItem() == Items.TOTEM_OF_UNDYING) return;
 
         int slot = findTotem();
@@ -40,7 +38,6 @@ public class AutoTotem extends Module {
             ItemStack stack = mc.player.getInventory().getStack(i);
 
             if (stack.getItem() == Items.TOTEM_OF_UNDYING) {
-                // перевод в slot id контейнера
                 return (i < 9) ? i + 36 : i;
             }
         }
@@ -49,14 +46,8 @@ public class AutoTotem extends Module {
 
     private void moveTotem(int slot) {
         int syncId = mc.player.currentScreenHandler.syncId;
-
-        // берем тотем
         mc.interactionManager.clickSlot(syncId, slot, 0, SlotActionType.PICKUP, mc.player);
-
-        // кладем в оффхенд
         mc.interactionManager.clickSlot(syncId, OFFHAND_SLOT, 0, SlotActionType.PICKUP, mc.player);
-
-        // если что-то осталось на курсоре — возвращаем назад
         mc.interactionManager.clickSlot(syncId, slot, 0, SlotActionType.PICKUP, mc.player);
     }
 }
