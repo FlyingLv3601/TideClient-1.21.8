@@ -1,10 +1,12 @@
 package com.tideclient;
 
 import com.tideclient.GUI.ClickGuiScreen;
+import com.tideclient.Module.Config.CONFIG;
 import com.tideclient.Module.ModuleManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
@@ -20,7 +22,7 @@ public class TideClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 
-
+		ClientLifecycleEvents.CLIENT_STOPPING.register(client -> {CONFIG.save(ModuleManager.modules);});
 
 		OPEN_GUI = KeyBindingHelper.registerKeyBinding(new KeyBinding(
 				"key.hanaclient.opengui",

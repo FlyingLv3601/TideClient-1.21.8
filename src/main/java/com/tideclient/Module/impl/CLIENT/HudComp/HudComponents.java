@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import static com.tideclient.Module.ModuleManager.modules;
 
+
 public class HudComponents {
     static MinecraftClient mc = MinecraftClient.getInstance();
     static int w = mc.getWindow().getScaledWidth();
