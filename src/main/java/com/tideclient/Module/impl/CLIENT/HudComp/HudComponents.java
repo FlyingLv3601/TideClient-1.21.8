@@ -68,7 +68,7 @@ public class HudComponents {
 
     public static void textRenderEngine(DrawContext ctx, String text, int x, int y){
         MinecraftClient client = MinecraftClient.getInstance();
-        ctx.drawText(client.textRenderer, text, x, y, Color.activeBtn, true);
+        ctx.drawText(client.textRenderer, text, x, y, Color.activeBtn, false);
     }
 
     public static List<String> moduleList(boolean stat){
