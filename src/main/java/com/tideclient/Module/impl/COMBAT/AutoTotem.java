@@ -7,6 +7,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
 
+import static com.tideclient.util.ChatMessage.whenDisable;
+import static com.tideclient.util.ChatMessage.whenEnabled;
+import static com.tideclient.util.ItemSearch.findItem;
+
 public class AutoTotem extends Module {
 
     public AutoTotem() {
@@ -19,7 +23,16 @@ public class AutoTotem extends Module {
     private final MinecraftClient mc = MinecraftClient.getInstance();
     private final int OFFHAND_SLOT = 45;
 
-    @Override
+    String name = getName();
+
+    public void onEnable() {
+        whenEnabled(name);
+    }
+
+    public void onDisable(){
+        whenDisable(name);
+    }
+
     public void onTick() {
         if (mc.player == null || mc.interactionManager == null) return;
 
@@ -27,22 +40,13 @@ public class AutoTotem extends Module {
         tick = 0;
         if (mc.player.getOffHandStack().getItem() == Items.TOTEM_OF_UNDYING) return;
 
-        int slot = findTotem();
+        int slot = findItem(Items.TOTEM_OF_UNDYING);
         if (slot == -1) return;
 
         moveTotem(slot);
     }
 
-    private int findTotem() {
-        for (int i = 0; i < 36; i++) {
-            ItemStack stack = mc.player.getInventory().getStack(i);
 
-            if (stack.getItem() == Items.TOTEM_OF_UNDYING) {
-                return (i < 9) ? i + 36 : i;
-            }
-        }
-        return -1;
-    }
 
     private void moveTotem(int slot) {
         int syncId = mc.player.currentScreenHandler.syncId;
