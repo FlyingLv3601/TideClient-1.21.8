@@ -14,7 +14,7 @@ public class Trail extends Module {
     boolean status;
 
     public final BooleanSetting Cherry = new BooleanSetting("Cherry", true);
-    public final BooleanSetting bubbles = new BooleanSetting("bubbles", true);
+    public final BooleanSetting bubbles = new BooleanSetting("bubbles", false);
 
 
     SimpleParticleType cherry = ParticleTypes.CHERRY_LEAVES;

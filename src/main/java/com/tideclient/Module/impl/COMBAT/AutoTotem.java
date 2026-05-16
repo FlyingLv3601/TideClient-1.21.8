@@ -9,6 +9,7 @@ import net.minecraft.screen.slot.SlotActionType;
 
 import static com.tideclient.util.ChatMessage.whenDisable;
 import static com.tideclient.util.ChatMessage.whenEnabled;
+import static com.tideclient.util.InventoryUtil.moveItem;
 import static com.tideclient.util.ItemSearch.findItem;
 
 public class AutoTotem extends Module {
@@ -43,15 +44,10 @@ public class AutoTotem extends Module {
         int slot = findItem(Items.TOTEM_OF_UNDYING);
         if (slot == -1) return;
 
-        moveTotem(slot);
+        moveItem(slot, OFFHAND_SLOT);
     }
 
 
 
-    private void moveTotem(int slot) {
-        int syncId = mc.player.currentScreenHandler.syncId;
-        mc.interactionManager.clickSlot(syncId, slot, 0, SlotActionType.PICKUP, mc.player);
-        mc.interactionManager.clickSlot(syncId, OFFHAND_SLOT, 0, SlotActionType.PICKUP, mc.player);
-        mc.interactionManager.clickSlot(syncId, slot, 0, SlotActionType.PICKUP, mc.player);
-    }
+
 }
