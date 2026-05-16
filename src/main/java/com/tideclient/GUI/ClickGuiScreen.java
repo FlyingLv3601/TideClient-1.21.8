@@ -8,6 +8,8 @@ import net.minecraft.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.tideclient.GUI.comp.Color.outline;
+
 public class ClickGuiScreen extends Screen {
 
     private final List<Panel> panels = new ArrayList<>();

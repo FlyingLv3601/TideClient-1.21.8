@@ -1,6 +1,7 @@
 package com.tideclient.Module;
 
 import com.tideclient.Module.Config.CONFIG;
+import com.tideclient.Module.impl.COMBAT.AutoOffHand;
 import com.tideclient.Module.impl.COMBAT.AutoTotem;
 import com.tideclient.Module.impl.CLIENT.Hud;
 import com.tideclient.Module.impl.MOVEMENT.NoFall;
@@ -27,6 +28,7 @@ public class ModuleManager {
         modules.add(new KillEffect());
         modules.add(new NoFall());
         modules.add(new AutoTotemFarm());
+        modules.add(new AutoOffHand());
 
         CONFIG.load(modules);
     }

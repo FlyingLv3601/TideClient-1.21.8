@@ -7,6 +7,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import java.util.List;
 
+import static com.tideclient.util.TextRenderUtil.TextRender;
+
 public class ModuleButton {
 
     private final Module mod;
@@ -24,7 +26,7 @@ public class ModuleButton {
 
         ctx.fill(bx, by, bx + buttonW, by + buttonBaseH, color);
 
-        ctx.drawText(MinecraftClient.getInstance().textRenderer, mod.getName(), bx + 4, by + 3, 0xFFFFFFFF, false);
+        TextRender(ctx, mod.getName(), bx + 4, by + 3, 0xFFFFFFFF);
 
         if (expanded) {
             int yOffset = by + buttonBaseH;

@@ -4,6 +4,8 @@ import com.tideclient.GUI.comp.Color;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 
+import static com.tideclient.util.TextRenderUtil.TextRender;
+
 public class BooleanSetting extends Setting {
 
     private boolean enabled;
@@ -14,15 +16,15 @@ public class BooleanSetting extends Setting {
     }
 
     public void render(DrawContext ctx, int x, int y, int mouseX, int mouseY) {
-        ctx.fill(x, y, x + 100, y + 14, 0xFF2B2B2B);
+        ctx.fill(x, y, x + 100, y + 14, Color.expModule);
 
-        ctx.drawText(MinecraftClient.getInstance().textRenderer, name, x + 4, y + 3, 0xFFFFFFFF, false);
+        TextRender(ctx, name, x + 4, y + 3, 0xFFFFFFFF);
 
-        String value = enabled ? "§aON" : "§cOFF";
+        String value = enabled ? "+" : "-";
         //TODO: change off and on text to square
         int color = enabled ? Color.trueStatus : Color.falseStatus;
 
-        ctx.drawText(MinecraftClient.getInstance().textRenderer, value, x + 70, y + 3, color, false);
+        TextRender(ctx, value, x + 70, y + 3, color);
     }
 
     public boolean click(double mouseX, double mouseY, int button, int x, int y) {
@@ -46,6 +48,7 @@ public class BooleanSetting extends Setting {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
+
 
     public void toggle() {
         this.enabled = !this.enabled;

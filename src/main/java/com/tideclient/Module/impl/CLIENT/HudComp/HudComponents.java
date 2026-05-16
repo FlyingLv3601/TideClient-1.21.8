@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.tideclient.GUI.comp.Color.hudColor;
 import static com.tideclient.Module.ModuleManager.modules;
+import static com.tideclient.util.TextRenderUtil.TextRender;
 
 
 public class HudComponents {
@@ -20,27 +22,27 @@ public class HudComponents {
 
     public static void HudInit(boolean status, DrawContext ctx){
         if(status){
-            textRenderEngine(ctx, logo(), 5,3);
-            textRenderEngine(ctx, fps(), 5,12);
+            TextRender(ctx, logo(), 5,3,hudColor);
+            TextRender(ctx, fps(), 5,12,hudColor);
 
             int textWidthSpeed = mc.textRenderer.getWidth(speed());
-            textRenderEngine(ctx, speed(), (w - textWidthSpeed) - 5, h - 20);
+            TextRender(ctx, speed(), (w - textWidthSpeed) - 5, h - 20,hudColor);
 
             int textWidthPosition = mc.textRenderer.getWidth(position());
-            textRenderEngine(ctx, position(), (w - textWidthPosition) - 5, h - 10);
+            TextRender(ctx, position(), (w - textWidthPosition) - 5, h - 10,hudColor);
         }else{
-
+            return;
         }
     }
 
 
     public static void getActiveModule(DrawContext ctx){
-        int y = 3;
+        int y = 5;
         for(Module module : modules){
             if(!module.getStatus()) continue;
             int textModuleListWidth = mc.textRenderer.getWidth(module.getName());
 
-            textRenderEngine(ctx, module.getName(), (w - textModuleListWidth)  , y - 5);
+            TextRender(ctx, module.getName(), (w - textModuleListWidth)  , y - 5,hudColor);
             y += 15;
         }
     }
@@ -66,10 +68,6 @@ public class HudComponents {
 
 
 
-    public static void textRenderEngine(DrawContext ctx, String text, int x, int y){
-        MinecraftClient client = MinecraftClient.getInstance();
-        ctx.drawText(client.textRenderer, text, x, y, Color.activeBtn, false);
-    }
 
     public static List<String> moduleList(boolean stat){
         return modules.stream().filter(module -> module.getStatus() == stat).map(Module -> Module.getName()).collect(Collectors.toList());
