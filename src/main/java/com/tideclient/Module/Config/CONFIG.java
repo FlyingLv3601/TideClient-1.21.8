@@ -12,6 +12,9 @@ import java.util.List;
 import com.tideclient.Module.Module;
 import java.util.Map;
 
+
+//TODO: add settings: hud -> (every comp status), AutoTotem -> (custom delay), trail -> (other trails)
+
 public class CONFIG {
     private static final String FILE = "config.json";
     private static final Gson gson = new Gson();
