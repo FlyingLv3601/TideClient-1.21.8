@@ -4,9 +4,10 @@ import com.tideclient.Module.Config.CONFIG;
 import com.tideclient.Module.impl.COMBAT.AutoOffHand;
 import com.tideclient.Module.impl.COMBAT.AutoTotem;
 import com.tideclient.Module.impl.CLIENT.Hud;
+import com.tideclient.Module.impl.COMBAT.KillAura;
 import com.tideclient.Module.impl.MOVEMENT.NoFall;
 import com.tideclient.Module.impl.MOVEMENT.Sprint;
-import com.tideclient.Module.impl.PLAYER.AutoTotemFarm;
+import com.tideclient.Module.impl.PLAYER.AutoRespawn;
 import com.tideclient.Module.impl.RENDER.Fullbright;
 import com.tideclient.Module.impl.RENDER.KillEffect;
 import com.tideclient.Module.impl.RENDER.Trail;
@@ -27,8 +28,9 @@ public class ModuleManager {
         modules.add(new Trail());
         modules.add(new KillEffect());
         modules.add(new NoFall());
-        modules.add(new AutoTotemFarm());
         modules.add(new AutoOffHand());
+        modules.add(new KillAura());
+        modules.add(new AutoRespawn());
 
         CONFIG.load(modules);
     }
