@@ -32,7 +32,7 @@ public class TideClient implements ClientModInitializer {
 		OPEN_GUI = KeyBindingHelper.registerKeyBinding(new KeyBinding(
 				"key.hanaclient.opengui",
 				InputUtil.Type.KEYSYM,
-				GLFW.GLFW_KEY_R,
+				GLFW.GLFW_KEY_LEFT_ALT,
 				"key.categories.hanaclient"
 		));
 
@@ -48,12 +48,5 @@ public class TideClient implements ClientModInitializer {
 		});
 
 		ModuleManager.init();
-
-
-
-
-
-
-		LOGGER.info("Hello Fabric world!");
 	}
 }
