@@ -30,8 +30,6 @@ public abstract class MixinSplashScreen {
         int textWidth = client.textRenderer.getWidth(text);
         int textHeight = client.textRenderer.fontHeight;
 
-        context.drawCenteredTextWithShadow(client.textRenderer, text, 0, 0, 0xFFFFFFFF);
-
         context.getMatrices().popMatrix();
     }
 }
