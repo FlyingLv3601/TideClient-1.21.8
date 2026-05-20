@@ -20,11 +20,13 @@ public class BooleanSetting extends Setting {
 
         TextRender(ctx, name, x + 4, y + 3, 0xFFFFFFFF);
 
-        String value = enabled ? "+" : "-";
+        //String value = enabled ? "⬜" : "-";
         //TODO: change off and on text to square
+        //TextRender(ctx, "⬜", x + 70, y + 3, color);
+        int bx = x + 82;
         int color = enabled ? Color.trueStatus : Color.falseStatus;
+        ctx.fill(bx, y + 3, bx + 9, y + 12, enabled ? 0xBF919191 : 0x40919191);
 
-        TextRender(ctx, value, x + 70, y + 3, color);
     }
 
     public boolean click(double mouseX, double mouseY, int button, int x, int y) {
@@ -45,7 +47,7 @@ public class BooleanSetting extends Setting {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setStatus(boolean enabled) {
         this.enabled = enabled;
     }
 
