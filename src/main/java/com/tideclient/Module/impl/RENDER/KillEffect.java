@@ -2,35 +2,64 @@ package com.tideclient.Module.impl.RENDER;
 
 import com.tideclient.Module.Categories;
 import com.tideclient.Module.Module;
-import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
-import net.minecraft.entity.EntityType;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LightningEntity;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.entity.EntityType;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class KillEffect extends Module {
 
-    boolean status;
+    private final Set<Integer> lastEntities = new HashSet<>();
+    private final MinecraftClient mc = MinecraftClient.getInstance();
 
-    public KillEffect(){
+    public KillEffect() {
         super("KillEffect", Categories.RENDER);
-        ServerLivingEntityEvents.AFTER_DEATH.register(((entity, damageSource) -> {
-            if(status){
-                if(entity.getWorld() instanceof ServerWorld serverWorld){
-                    LightningEntity lightning = EntityType.LIGHTNING_BOLT.spawn(serverWorld, entity.getBlockPos(), SpawnReason.TRIGGERED);
-                    if (lightning != null) {
-                        lightning.setCosmetic(true);
-                    }
-                }
-            }
-        }));
-
     }
 
-    public void onEnable(){ status = true;}
-    public void onDisable(){status = false;}
-    public void onTick(){}
+    @Override
+    public void onTick() {
+        if (mc.world == null || mc.player == null) {
+            lastEntities.clear();
+            return;
+        }
 
+        Set<Integer> currentEntities = new HashSet<>();
 
-//Works only in single player ill fix it later (I hope)
+        for (Entity entity : mc.world.getEntities()) {
+            if (entity.isAlive() && entity != mc.player) {
+                currentEntities.add(entity.getId());
+            }
+        }
+
+        for (Integer id : lastEntities) {
+            if (!currentEntities.contains(id)) {
+                Entity deadEntity = mc.world.getEntityById(id);
+                double x, y, z;
+
+                if (deadEntity != null) {
+                    x = deadEntity.getX();
+                    y = deadEntity.getY();
+                    z = deadEntity.getZ();
+                } else {
+                    continue;
+                }
+
+                LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, mc.world);
+                lightning.refreshPositionAfterTeleport(x, y + 0.5, z);
+                lightning.setCosmetic(true);
+                mc.world.addEntity(lightning);
+            }
+        }
+
+        lastEntities.clear();
+        lastEntities.addAll(currentEntities);
+    }
+
+    @Override
+    public void onDisable() {
+        lastEntities.clear();
+    }
 }
