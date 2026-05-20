@@ -7,22 +7,18 @@ public class ChatMessage {
 
     private static final MinecraftClient mc = MinecraftClient.getInstance();
 
-    public static void whenEnabled(String name) {
+    public static void moduleStatusLog(String name, boolean status) {
         if (mc.player != null) {
-            mc.player.sendMessage(
-                    Text.literal("§9[TideClient] §f" + name + " §aenabled"),
-                    false
-            );
+            if(status) {
+                chat(name, "enabled");
+            }else{
+                chat(name, "disabled");
+            }
         }
     }
 
-    public static void whenDisable(String name) {
-        if (mc.player != null) {
-            mc.player.sendMessage(
-                    Text.literal("§9[TideClient] §f" + name + " §cdisabled"),
-                    false
-            );
-        }
+    public static void chat(String name, String isToggled) {
+        if (mc.player != null) mc.player.sendMessage(Text.literal("§9[TideClient] §f" + name + " §" + isToggled),false);
     }
 
 
