@@ -7,8 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.screen.slot.SlotActionType;
 
-import static com.tideclient.util.ChatMessage.whenDisable;
-import static com.tideclient.util.ChatMessage.whenEnabled;
+import static com.tideclient.util.ChatMessage.*;
 import static com.tideclient.util.InventoryUtil.moveItem;
 import static com.tideclient.util.ItemSearch.findItem;
 
@@ -27,11 +26,11 @@ public class AutoTotem extends Module {
     String name = getName();
 
     public void onEnable() {
-        whenEnabled(name);
+        moduleStatusLog(name, true);
     }
 
     public void onDisable(){
-        whenDisable(name);
+        moduleStatusLog(name, false);
     }
 
     public void onTick() {

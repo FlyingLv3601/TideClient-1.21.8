@@ -6,8 +6,7 @@ import com.tideclient.Module.impl.CLIENT.HudComp.HudComponents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 
 import static com.tideclient.Module.impl.CLIENT.HudComp.HudComponents.getActiveModule;
-import static com.tideclient.util.ChatMessage.whenDisable;
-import static com.tideclient.util.ChatMessage.whenEnabled;
+import static com.tideclient.util.ChatMessage.*;
 
 public class Hud extends Module {
     private static boolean shouldRender = false;
@@ -29,12 +28,12 @@ public class Hud extends Module {
     @Override
     public void onEnable() {
         shouldRender = true;
-        whenEnabled(name);
+        moduleStatusLog(name, true);
     }
 
     @Override
     public void onDisable() {
         shouldRender = false;
-        whenDisable(name);
+        moduleStatusLog(name, false);
     }
 }
