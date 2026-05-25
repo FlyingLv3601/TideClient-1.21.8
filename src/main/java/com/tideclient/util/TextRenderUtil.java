@@ -9,9 +9,16 @@ public class TextRenderUtil {
     public static void TextRender(DrawContext ctx, String text, int x, int y){
         ctx.drawText(mc.textRenderer, text, x, y, Color.activeBtn, false);
     }
-
     public static void TextRender(DrawContext ctx, String text, int x, int y, int color){
         ctx.drawText(mc.textRenderer, text, x, y, color, false);
+    }
+
+    public static void TextRenderWithShadow(DrawContext ctx, String text, int x, int y){
+        ctx.drawText(mc.textRenderer, text, x, y, Color.activeBtn, true);
+    }
+
+    public static void TextRenderWithShadow(DrawContext ctx, String text, int x, int y, int color){
+        ctx.drawText(mc.textRenderer, text, x, y, color, true);
     }
 
 }
