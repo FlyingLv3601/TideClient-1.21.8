@@ -5,6 +5,8 @@ import com.tideclient.Module.Module;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 
+import static com.tideclient.util.ChatMessage.moduleStatusLog;
+
 public class NoFall extends Module {
     public NoFall(){
         super("NoFall", Categories.MOVEMENT);
@@ -12,9 +14,17 @@ public class NoFall extends Module {
 
     MinecraftClient mc = MinecraftClient.getInstance();
 
+    @Override
+    public void onEnable() {
+        moduleStatusLog(getName(), true);
+    }
 
-    public void onEnable() {}
-    public void onDisable() {}
+    @Override
+    public void onDisable() {
+        moduleStatusLog(getName(), false);
+    }
+
+    @Override
     public void onTick() {
         if(mc.player == null) return;
 

@@ -4,6 +4,8 @@ import com.tideclient.Module.Categories;
 import com.tideclient.Module.Module;
 import net.minecraft.client.MinecraftClient;
 
+import static com.tideclient.util.ChatMessage.moduleStatusLog;
+
 public class AutoRespawn extends Module {
     public AutoRespawn(){
         super("AutoRespawn", Categories.PLAYER);
@@ -12,10 +14,14 @@ public class AutoRespawn extends Module {
     boolean isEnabled;
 
     @Override
-    public void onEnable() {isEnabled = true;}
+    public void onEnable() {
+        moduleStatusLog(getName(), true);
+    }
 
     @Override
-    public void onDisable() {isEnabled = false;}
+    public void onDisable() {
+        moduleStatusLog(getName(), false);
+    }
 
     @Override
     public void onTick() {

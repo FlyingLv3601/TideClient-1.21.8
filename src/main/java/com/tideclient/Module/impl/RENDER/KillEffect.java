@@ -10,6 +10,8 @@ import net.minecraft.entity.EntityType;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.tideclient.util.ChatMessage.moduleStatusLog;
+
 public class KillEffect extends Module {
 
     private final Set<Integer> lastEntities = new HashSet<>();
@@ -18,6 +20,17 @@ public class KillEffect extends Module {
     public KillEffect() {
         super("KillEffect", Categories.RENDER);
     }
+    @Override
+    public void onEnable() {
+        moduleStatusLog(getName(), true);
+    }
+
+    @Override
+    public void onDisable() {
+        moduleStatusLog(getName(), false);
+        lastEntities.clear();
+    }
+
 
     @Override
     public void onTick() {
@@ -58,8 +71,4 @@ public class KillEffect extends Module {
         lastEntities.addAll(currentEntities);
     }
 
-    @Override
-    public void onDisable() {
-        lastEntities.clear();
-    }
 }

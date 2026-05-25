@@ -8,27 +8,37 @@ import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.particle.SimpleParticleType;
 
+import static com.tideclient.util.ChatMessage.moduleStatusLog;
+
 public class Trail extends Module {
 
     MinecraftClient mc = MinecraftClient.getInstance();
     boolean status;
 
     public final BooleanSetting Cherry = new BooleanSetting("Cherry", true);
-    public final BooleanSetting bubbles = new BooleanSetting("bubbles", false);
+    public final BooleanSetting Campfire = new BooleanSetting("campfire", false);
 
 
     SimpleParticleType cherry = ParticleTypes.CHERRY_LEAVES;
-    SimpleParticleType BUBBLE = ParticleTypes.BUBBLE;
+    SimpleParticleType campfire = ParticleTypes.CAMPFIRE_COSY_SMOKE;
 
 
 
     public Trail(){
         super("Trail", Categories.RENDER);
-        addSettings(Cherry, bubbles);
+        addSettings(Cherry, Campfire);
     }
-    public void onEnable() {status = true;}
+    @Override
+    public void onEnable() {
+        moduleStatusLog(getName(), true);
+        status = true;
+    }
 
-    public void onDisable() {status = false;}
+    @Override
+    public void onDisable() {
+        moduleStatusLog(getName(), false);
+        status = false;
+    }
 
     public void onTick() {
         if(mc.player == null && mc.world == null) return;
@@ -36,8 +46,8 @@ public class Trail extends Module {
         if(status){
             if(Cherry.isEnabled()){
                 renderTrail(cherry);
-            }else if(bubbles.isEnabled()){
-                renderTrail(BUBBLE);
+            }else if(Campfire.isEnabled()){
+                renderTrail(campfire);
             }
         }
     }

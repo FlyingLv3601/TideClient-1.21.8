@@ -4,14 +4,26 @@ import com.tideclient.Module.Categories;
 import com.tideclient.Module.Module;
 import net.minecraft.client.MinecraftClient;
 
+import static com.tideclient.util.ChatMessage.moduleStatusLog;
+
 public class Sprint extends Module {
     public Sprint(){
         super("Sprint", Categories.MOVEMENT);
     }
 
 
-    public void onEnable(){SetSprint(true);}
-    public void onDisable(){SetSprint(false);}
+
+
+    @Override
+    public void onEnable() {
+        moduleStatusLog(getName(), true);
+    }
+
+    @Override
+    public void onDisable() {
+        moduleStatusLog(getName(), false);
+    }
+
     public void onTick(){SetSprint(true);}
 
 
@@ -19,7 +31,7 @@ public class Sprint extends Module {
         MinecraftClient mc = MinecraftClient.getInstance();
         if(mc.player != null){
             if(status){
-                if(mc.player.forwardSpeed > 0){mc.player.setSprinting(true);}
+                if(mc.player.forwardSpeed > 0)mc.player.setSprinting(true);
             }
             else{mc.player.setSprinting(false);}
         }else{

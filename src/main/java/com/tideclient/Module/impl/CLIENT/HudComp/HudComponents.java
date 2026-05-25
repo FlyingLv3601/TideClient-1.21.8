@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import static com.tideclient.GUI.comp.Color.hudColor;
 import static com.tideclient.Module.ModuleManager.modules;
 import static com.tideclient.util.TextRenderUtil.TextRender;
+import static com.tideclient.util.TextRenderUtil.TextRenderWithShadow;
 
 
 public class HudComponents {
@@ -22,14 +23,14 @@ public class HudComponents {
 
     public static void HudInit(boolean status, DrawContext ctx){
         if(status){
-            TextRender(ctx, logo(), 5,3,hudColor);
-            TextRender(ctx, fps(), 5,12,hudColor);
+            TextRenderWithShadow(ctx, logo(), 5,3,hudColor);
+            TextRenderWithShadow(ctx, fps(), 5,12,hudColor);
 
             int textWidthSpeed = mc.textRenderer.getWidth(speed());
-            TextRender(ctx, speed(), (w - textWidthSpeed) - 5, h - 20,hudColor);
+            TextRenderWithShadow(ctx, speed(), (w - textWidthSpeed) - 5, h - 20,hudColor);
 
             int textWidthPosition = mc.textRenderer.getWidth(position());
-            TextRender(ctx, position(), (w - textWidthPosition) - 5, h - 10,hudColor);
+            TextRenderWithShadow(ctx, position(), (w - textWidthPosition) - 5, h - 10,hudColor);
         }else{
             return;
         }
@@ -42,7 +43,7 @@ public class HudComponents {
             if(!module.getStatus()) continue;
             int textModuleListWidth = mc.textRenderer.getWidth(module.getName());
 
-            TextRender(ctx, module.getName(), (w - textModuleListWidth)  , y - 5,hudColor);
+            TextRenderWithShadow(ctx, module.getName(), (w - textModuleListWidth)  , y - 5,hudColor);
             y += 15;
         }
     }
