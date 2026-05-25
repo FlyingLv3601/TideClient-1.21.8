@@ -10,4 +10,5 @@ public class Color {
     public static int falseStatus = 0xFFCCCCCC;
     public static int trueStatus = 0xFFD4D4D4;
     public static int hudColor = 0xFFB0B0B0;
+    public static int SplashScreen = 0xCCAAAAAA;
 }

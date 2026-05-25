@@ -10,9 +10,9 @@ public class ChatMessage {
     public static void moduleStatusLog(String name, boolean status) {
         if (mc.player != null) {
             if(status) {
-                chat(name, "enabled");
+                chat(name, " enabled");
             }else{
-                chat(name, "disabled");
+                chat(name, " disabled");
             }
         }
     }

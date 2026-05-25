@@ -4,7 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ExampleMixin",
-    "MixinSplashScreen"
+    "SplashOverlayMixin"
   ],
   "injectors": {
     "defaultRequire": 1
